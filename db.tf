@@ -1,27 +1,27 @@
-# module "tt-database" {
-#   providers = {
-#     azurerm.postgres_network = azurerm.postgres_network
-#   }
-#   source             = "git@github.com:hmcts/terraform-module-postgresql-flexible?ref=master"
-#   env                = var.env
+module "tt-database" {
+  providers = {
+    azurerm.postgres_network = azurerm.postgres_network
+  }
+  source             = "git@github.com:hmcts/terraform-module-postgresql-flexible?ref=master"
+  env                = var.env
 
-#   product       = var.product
-#   component     = var.component
-#   business_area = "cft"
+  product       = var.product
+  component     = var.component
+  business_area = "cft"
 
-#   pgsql_databases = [
-#     {
-#       name : "application"
-#     }
-#   ]
+  pgsql_databases = [
+    {
+      name : "application"
+    }
+  ]
 
-#   pgsql_version        = var.db_version
-#   admin_user_object_id = var.admin_user_object_id
-#   common_tags          = var.common_tags
+  pgsql_version        = var.db_version
+  admin_user_object_id = var.admin_user_object_id
+  common_tags          = var.common_tags
 
-#   location             = var.location
-#   pgsql_storage_mb     = var.db_storage_mb
-# }
+  location             = var.location
+  pgsql_storage_mb     = var.db_storage_mb
+}
 
 # # Add DB outputs to keyvault
 
