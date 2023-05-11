@@ -16,7 +16,7 @@ module "tt-database" {
   ]
 
   pgsql_version        = var.db_version
-  admin_user_object_id = var.admin_user_object_id
+  admin_user_object_id = var.jenkins_AAD_objectId
   common_tags          = var.common_tags
 
   location             = var.location
