@@ -2,7 +2,7 @@
 //noinspection GroovyUnusedAssignment
 @Library("Infrastructure") _
 
-def product = "tt"
+def product = "tax-tribunals"
 
 withInfraPipeline(product) {
 }
