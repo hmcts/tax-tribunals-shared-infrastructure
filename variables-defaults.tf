@@ -11,7 +11,7 @@ variable "common_tags" {
 # Database
 
 variable "db_storage_mb" {
-  default = "5120"
+  default = "32768"
 }
 
 variable "component" {
