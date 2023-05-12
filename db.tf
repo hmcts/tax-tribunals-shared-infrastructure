@@ -1,4 +1,7 @@
 module "tt-database" {
+  providers = {
+    azurerm.postgres_network = azurerm.postgres_network
+  }
   source             = "git@github.com:hmcts/terraform-module-postgresql-flexible?ref=master"
   env                = var.env
 
