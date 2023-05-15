@@ -43,18 +43,6 @@ resource "azurerm_key_vault_secret" "tt-password" {
   key_vault_id = module.tt-key-vault.key_vault_id
 }
 
-resource "azurerm_key_vault_secret" "tt-resource-group-location" {
-  name         = "tt-resource-group-location"
-  value        = module.tt-database.resource_group_location
-  key_vault_id = module.tt-key-vault.key_vault_id
-}
-
-resource "azurerm_key_vault_secret" "tt-resource-group-name" {
-  name         = "tt-resource-group-name"
-  value        = module.tt-database.resource_group_name
-  key_vault_id = module.tt-key-vault.key_vault_id
-}
-
 resource "azurerm_key_vault_secret" "tt-username" {
   name         = "tt-username"
   value        = module.tt-database.username
