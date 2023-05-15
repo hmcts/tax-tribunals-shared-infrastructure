@@ -3,7 +3,8 @@
 @Library("Infrastructure") _
 
 def product = "tax-tribunals"
-def component = "infrastructure"
+// def component = "infrastructure"
 
-withInfraPipeline(product, component) {
+// withInfraPipeline(product, component) {
+withInfraPipeline(product) {
 }
