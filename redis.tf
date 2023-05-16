@@ -7,10 +7,10 @@ module "redis" {
   common_tags = var.common_tags
 }
 
-data "azurerm_subnet" "redis" {
-  name                 = "redis"
-  resource_group_name  = "ss-${var.env}-network-rg"
-  virtual_network_name = "ss-${var.env}-vnet"
+data "azurerm_subnet" "core_infra_redis_subnet" {
+  name                 = "core-infra-subnet-1-${var.env}"
+  virtual_network_name = "core-infra-vnet-${var.env}"
+  resource_group_name = "core-infra-${var.env}"
 }
 
 # Format: rediss://:[password]@[hostname]:[port]/[db]
