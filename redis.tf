@@ -8,7 +8,7 @@ module "redis" {
 }
 
 data "azurerm_subnet" "redis" {
-  name                 = "core-infra-subnet-1-${var.env}"
+  name                 = "core-infra-subnet-tax-tribunals-${var.env}"
   virtual_network_name = "core-infra-vnet-${var.env}"
   resource_group_name = "core-infra-${var.env}"
 }
