@@ -1,6 +1,6 @@
 module "tt-key-vault" {
   source                  = "git@github.com:hmcts/cnp-module-key-vault?ref=master"
-  name                    = "${var.product}-${var.env}"
+  name                    = "${var.product}-cft-${var.env}"
   product                 = var.product
   env                     = var.env
   tenant_id               = var.tenant_id
