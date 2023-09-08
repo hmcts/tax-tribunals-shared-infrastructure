@@ -4,6 +4,7 @@ module "redis" {
   location    = var.location
   env         = var.env
   common_tags = var.common_tags
+  name        = "${var.product}-cft-${var.env}"
 
   redis_version            = "6"
   business_area            = "cft"
