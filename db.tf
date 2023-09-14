@@ -11,7 +11,7 @@ module "tt-database" {
 
   pgsql_databases = [
     {
-      name : "application"
+      name : "taxtribunals"
     }
   ]
 
