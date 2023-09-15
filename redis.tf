@@ -6,8 +6,8 @@ module "redis" {
   common_tags = var.common_tags
   name        = "${var.product}-cft-${var.env}"
 
-  redis_version            = "6"
-  business_area            = "cft"
+  redis_version                 = "6"
+  business_area                 = "cft"
   private_endpoint_enabled      = true
   public_network_access_enabled = false
 }
