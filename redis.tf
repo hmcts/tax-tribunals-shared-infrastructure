@@ -10,6 +10,9 @@ module "redis" {
   business_area                 = "cft"
   private_endpoint_enabled      = true
   public_network_access_enabled = false
+  sku_name                      = var.sku_name
+  family                        = var.family
+  capacity                      = var.capacity
 }
 
 # Format: rediss://:[password]@[hostname]:[port]/[db]
