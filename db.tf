@@ -14,6 +14,12 @@ module "tt-database" {
       name : "taxtribunals"
     }
   ]
+  pgsql_server_configuration = [
+    {
+      name  = "azure.extensions"
+      value = "UUID-OSSP"
+    }
+  ]
 
   pgsql_version        = var.db_version
   admin_user_object_id = var.jenkins_AAD_objectId
