@@ -16,10 +16,6 @@ module "tt-database" {
   ]
   pgsql_server_configuration = [
     {
-      name = "backslash_quote"
-      value = "on"
-    },
-    {
       name  = "azure.extensions"
       value = "UUID-OSSP"
     }
