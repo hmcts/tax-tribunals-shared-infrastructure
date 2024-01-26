@@ -27,7 +27,7 @@ resource "azurerm_resource_group_template_deployment" "action-group-kv" {
     emailReceiverAddress = { value = var.email_receiver_address }
   })
 }
-`
+
 resource "azurerm_resource_group_template_deployment" "action-group-storage" {
   template_content    = data.template_file.actiongrouptemplate.rendered
   name                = var.short_name
