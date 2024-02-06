@@ -50,7 +50,7 @@ variable "capacity" {
   description = "The size of the Redis cache to deploy. Valid values are 1, 2, 3, 4, 5"
 }
 
-# Groups
+# Groups 
 
 variable "short_name" {
   default = "tax-tribunals"
