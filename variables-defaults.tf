@@ -49,3 +49,33 @@ variable "capacity" {
   default     = "1"
   description = "The size of the Redis cache to deploy. Valid values are 1, 2, 3, 4, 5"
 }
+
+# Groups 
+
+variable "short_name" {
+  default = "tax-tribunals"
+}
+
+variable "resource_group_name_db" { # for DB
+  default = "tax-tribunals-infrastructure-data-prod"
+}
+
+variable "resource_group_name_kv" { # for kv
+  default = "tax-tribunals-prod"
+}
+
+variable "resource_group_name_storage" { # for storage
+  default = "tax-tribunals-prod"
+}
+
+variable "action_group_name" {
+  default = "tax-tribunals-action-group"
+}
+
+variable "email_receiver_name" {
+  default = "Tax Tribunals Alerts Receiver"
+}
+
+variable "email_receiver_address" {
+  default = "william.taylor@hmcts.net"
+}
