@@ -5,4 +5,3 @@
 - postgres DB
 - redis
 - azure storage
-- 
