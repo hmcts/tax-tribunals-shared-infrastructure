@@ -23,7 +23,7 @@ module "tt-database" {
 
   pgsql_version        = var.db_version
   admin_user_object_id = var.jenkins_AAD_objectId
-  common_tags          = var.common_tags
+  common_tags          = merge(var.common_tags, { autoShutdown = false })
 
   location         = var.location
   pgsql_storage_mb = var.db_storage_mb
