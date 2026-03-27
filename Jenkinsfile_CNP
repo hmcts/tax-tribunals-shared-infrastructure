@@ -4,6 +4,8 @@
 
 def product = "tax-tribunals"
 def component = "infrastructure"
+def branchesToSync = ['demo', 'ithc', 'perftest']
 
 withInfraPipeline(product, component) {
+    syncBranchesWithMaster(branchesToSync)
 }
