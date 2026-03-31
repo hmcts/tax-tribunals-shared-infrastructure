@@ -34,6 +34,10 @@ module "storage-account" {
     {
       name        = "private"
       access_type = "private"
+    },
+    {
+      name        = "uploadedfiles"
+      access_type = "private"
     }
   ]
 }
