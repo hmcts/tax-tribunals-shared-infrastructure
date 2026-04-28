@@ -6,13 +6,16 @@ module "redis" {
   common_tags = var.common_tags
   name        = "${var.product}-cft-${var.env}"
 
-  redis_version                 = "6"
-  business_area                 = "cft"
-  private_endpoint_enabled      = true
-  public_network_access_enabled = false
-  sku_name                      = var.sku_name
-  family                        = var.family
-  capacity                      = var.capacity
+  redis_version                   = "6"
+  business_area                   = "cft"
+  private_endpoint_enabled        = true
+  public_network_access_enabled   = false
+  sku_name                        = var.sku_name
+  family                          = var.family
+  capacity                        = var.capacity
+  maxfragmentationmemory_reserved = var.maxfragmentationmemory_reserved
+  maxmemory_delta                 = var.maxmemory_delta
+  maxmemory_reserved              = var.maxmemory_reserved
 }
 
 # Format: rediss://:[password]@[hostname]:[port]/[db]
