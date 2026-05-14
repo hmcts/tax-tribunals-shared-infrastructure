@@ -102,3 +102,9 @@ variable "maxmemory_reserved" {
 }
 
 variable "mgmt_subscription_id" {}
+
+variable "enable_qpi" {
+  description = "Enables Query Performance Insight. Creates Log Analytics workspace and diagnostic setting needed"
+  type        = bool
+  default     = false
+}

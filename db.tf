@@ -8,6 +8,7 @@ module "tt-database" {
   product       = var.product
   component     = var.component
   business_area = "cft"
+  enable_qpi    = var.enable_qpi
 
   pgsql_databases = [
     {
@@ -17,8 +18,12 @@ module "tt-database" {
   pgsql_server_configuration = [
     {
       name  = "azure.extensions"
-      value = "UUID-OSSP"
-    }
+      value = "UUID-OSSP,pg_stat_statements"
+    },
+    {
+      name  = "track_io_timing"
+      value = "ON"
+    },
   ]
 
   pgsql_version        = var.db_version
