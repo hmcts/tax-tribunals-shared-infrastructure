@@ -98,3 +98,10 @@ data "azurerm_subnet" "cft_aks_01_subnet" {
   virtual_network_name = local.cft_aks_network_name
   resource_group_name  = local.cft_aks_network_rg_name
 }
+
+data "azurerm_subnet" "core_infra_redis_subnet" {
+  name                 = "core-infra-subnet-1-${var.env}"
+  virtual_network_name = "core-infra-vnet-${var.env}"
+  resource_group_name  = "core-infra-${var.env}"
+}
+
