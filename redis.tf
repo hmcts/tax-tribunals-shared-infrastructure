@@ -35,8 +35,10 @@ module "managed-redis" {
   common_tags                  = var.common_tags
   existing_resource_group_name = azurerm_resource_group.rg.name
 
-  sku_name          = "Balanced_B0"
-  clustering_policy = "EnterpriseCluster"
+  sku_name                         = "Balanced_B0"
+  clustering_policy                = "NoCluster"
+  eviction_policy                  = "NoEviction"
+  persistence_aof_backup_frequency = "1s"
 
   public_network_access   = "Disabled"
   create_private_endpoint = true
@@ -53,4 +55,3 @@ resource "azurerm_key_vault_secret" "managed-redis-url" {
   value        = "rediss://:${urlencode(module.managed-redis.primary_access_key)}@${module.managed-redis.hostname}:${module.managed-redis.port}"
   key_vault_id = module.tt-key-vault.key_vault_id
 }
-
