@@ -7,8 +7,8 @@ locals {
     data.azurerm_subnet.cft_aks_01_subnet.id
   ]
 
-  preview_subnets   = var.env == "aat" ? [data.azurerm_subnet.preview_aks_00_subnet.id, data.azurerm_subnet.preview_aks_01_subnet.id] : []
-  perftest_subnets  = var.env == "perftest" ? [data.azurerm_subnet.perftest_mgmt_subnet.id] : []
+  preview_subnets   = var.env == "aat" ? [data.azurerm_subnet.preview_aks_00_subnet[0].id, data.azurerm_subnet.preview_aks_01_subnet[0].id] : []
+  perftest_subnets  = var.env == "perftest" ? [data.azurerm_subnet.perftest_mgmt_subnet[0].id] : []
   all_valid_subnets = concat(local.standard_subnets, local.preview_subnets, local.perftest_subnets)
 }
 
