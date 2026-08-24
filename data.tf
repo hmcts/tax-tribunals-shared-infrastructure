@@ -33,17 +33,20 @@ provider "azurerm" {
 
 provider "azurerm" {
   features {}
-  alias           = "aks_preview"
-  subscription_id = "8b6ea922-0862-443e-af15-6056e1c9b9a4"
+  alias                           = "aks_preview"
+  subscription_id                 = var.env == "aat" ? "8b6ea922-0862-443e-af15-6056e1c9b9a4" : var.aks_subscription_id
+  resource_provider_registrations = "none"
 }
 
 provider "azurerm" {
   features {}
-  alias           = "aks_perftest_mgmt"
-  subscription_id = "7a4e3bd5-ae3a-4d0c-b441-2188fee3ff1c"
+  alias                           = "aks_perftest_mgmt"
+  subscription_id                 = var.env == "perftest" ? "7a4e3bd5-ae3a-4d0c-b441-2188fee3ff1c" : var.aks_subscription_id
+  resource_provider_registrations = "none"
 }
 
 data "azurerm_subnet" "perftest_mgmt_subnet" {
+  count                = var.env == "perftest" ? 1 : 0
   provider             = azurerm.aks_perftest_mgmt
   name                 = local.perftest_subnet_name
   virtual_network_name = local.perftest_vnet_name
@@ -51,6 +54,7 @@ data "azurerm_subnet" "perftest_mgmt_subnet" {
 }
 
 data "azurerm_subnet" "preview_aks_00_subnet" {
+  count                = var.env == "aat" ? 1 : 0
   provider             = azurerm.aks_preview
   name                 = "aks-00"
   virtual_network_name = local.preview_vnet_name
@@ -58,6 +62,7 @@ data "azurerm_subnet" "preview_aks_00_subnet" {
 }
 
 data "azurerm_subnet" "preview_aks_01_subnet" {
+  count                = var.env == "aat" ? 1 : 0
   provider             = azurerm.aks_preview
   name                 = "aks-01"
   virtual_network_name = local.preview_vnet_name
@@ -104,4 +109,3 @@ data "azurerm_subnet" "core_infra_redis_subnet" {
   virtual_network_name = "core-infra-vnet-${var.env}"
   resource_group_name  = "core-infra-${var.env}"
 }
-
