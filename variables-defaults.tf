@@ -19,7 +19,7 @@ variable "component" {
 }
 
 variable "db_version" {
-  default = 14
+  default = 16
 }
 
 variable "sa_account_kind" {
