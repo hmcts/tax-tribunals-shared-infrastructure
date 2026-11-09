@@ -108,3 +108,20 @@ variable "private_dns_subscription_id" {
   type        = string
   default     = "1baf5470-1c3e-40d3-a6f7-74bfbce4b348"
 }
+
+variable "postgres_pitr" {
+  description = "PostgreSQL restore settings for one target environment; null disables creation."
+  type = object({
+    env               = string
+    name              = string
+    restore_time      = string
+    import_object_ids = optional(map(string), {})
+  })
+  default = null
+}
+
+variable "postgres_use_pitr" {
+  description = "Switch PostgreSQL host, instance ID and username secrets to the validated restore."
+  type        = bool
+  default     = false
+}
