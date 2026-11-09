@@ -1,3 +1,5 @@
+data "azurerm_client_config" "current" {}
+
 locals {
   mgmt_network_name    = "cft-ptl-vnet"
   mgmt_network_rg_name = "cft-ptl-network-rg"
