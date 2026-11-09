@@ -1,52 +1,5 @@
 data "azurerm_client_config" "current" {}
 
-locals {
-  mgmt_network_name    = "cft-ptl-vnet"
-  mgmt_network_rg_name = "cft-ptl-network-rg"
-
-  aks_env = var.env == "sandbox" ? "sbox" : var.env
-
-  aat_cft_vnet_name           = "cft-aat-vnet"
-  aat_cft_vnet_resource_group = "cft-aat-network-rg"
-
-  cft_aks_network_name    = "cft-${local.aks_env}-vnet"
-  cft_aks_network_rg_name = "cft-${local.aks_env}-network-rg"
-
-
-  preview_vnet_name            = "cft-preview-vnet"
-  preview_vnet_resource_group  = "cft-preview-network-rg"
-  perftest_vnet_name           = "core-infra-vnet-perftest"
-  perftest_subnet_name         = "core-infra-subnet-mgmtperftest"
-  perftest_vnet_resource_group = "core-infra-perftest"
-}
-
-provider "azurerm" {
-  alias           = "mgmt"
-  subscription_id = var.mgmt_subscription_id
-  features {}
-}
-
-provider "azurerm" {
-  features {}
-  resource_provider_registrations = "none"
-  alias                           = "aks"
-  subscription_id                 = var.aks_subscription_id
-}
-
-provider "azurerm" {
-  features {}
-  alias                           = "aks_preview"
-  subscription_id                 = var.env == "aat" ? "8b6ea922-0862-443e-af15-6056e1c9b9a4" : var.aks_subscription_id
-  resource_provider_registrations = "none"
-}
-
-provider "azurerm" {
-  features {}
-  alias                           = "aks_perftest_mgmt"
-  subscription_id                 = var.env == "perftest" ? "7a4e3bd5-ae3a-4d0c-b441-2188fee3ff1c" : var.aks_subscription_id
-  resource_provider_registrations = "none"
-}
-
 data "azurerm_subnet" "perftest_mgmt_subnet" {
   count                = var.env == "perftest" ? 1 : 0
   provider             = azurerm.aks_perftest_mgmt
@@ -110,4 +63,9 @@ data "azurerm_subnet" "core_infra_redis_subnet" {
   name                 = "core-infra-subnet-1-${var.env}"
   virtual_network_name = "core-infra-vnet-${var.env}"
   resource_group_name  = "core-infra-${var.env}"
+}
+
+data "azurerm_user_assigned_identity" "jenkins" {
+  name                = "jenkins-${var.env}-mi"
+  resource_group_name = "managed-identities-${var.env}-rg"
 }

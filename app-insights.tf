@@ -10,13 +10,3 @@ module "application_insights" {
 
   application_type = "web"
 }
-resource "azurerm_key_vault_secret" "app-insights-instrumentation-key" {
-  name         = "app-insights-instrumentation-key"
-  value        = module.application_insights.instrumentation_key
-  key_vault_id = module.tt-key-vault.key_vault_id
-}
-resource "azurerm_key_vault_secret" "app-insights-connection-string" {
-  name         = "app-insights-connection-string"
-  value        = module.application_insights.connection_string
-  key_vault_id = module.tt-key-vault.key_vault_id
-}

@@ -18,13 +18,6 @@ module "redis" {
   maxmemory_reserved              = var.maxmemory_reserved
 }
 
-# Format: rediss://:[password]@[hostname]:[port]/[db]
-resource "azurerm_key_vault_secret" "tax-tribunals-redis-url" {
-  name         = "redis-url"
-  value        = "rediss://:${urlencode(module.redis.access_key)}@${module.redis.host_name}:${module.redis.redis_port}"
-  key_vault_id = module.tt-key-vault.key_vault_id
-}
-
 module "managed-redis" {
   source = "git@github.com:hmcts/terraform-module-azure-managed-redis?ref=main"
 
@@ -48,10 +41,4 @@ module "managed-redis" {
   ]
 
   access_keys_authentication_enabled = true
-}
-
-resource "azurerm_key_vault_secret" "managed-redis-url" {
-  name         = "managed-redis-url"
-  value        = "rediss://:${urlencode(module.managed-redis.primary_access_key)}@${module.managed-redis.hostname}:${module.managed-redis.port}"
-  key_vault_id = module.tt-key-vault.key_vault_id
 }

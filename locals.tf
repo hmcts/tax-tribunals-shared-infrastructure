@@ -1,4 +1,21 @@
 locals {
+  mgmt_network_name    = "cft-ptl-vnet"
+  mgmt_network_rg_name = "cft-ptl-network-rg"
+
+  aks_env = var.env == "sandbox" ? "sbox" : var.env
+
+  aat_cft_vnet_name           = "cft-aat-vnet"
+  aat_cft_vnet_resource_group = "cft-aat-network-rg"
+
+  cft_aks_network_name    = "cft-${local.aks_env}-vnet"
+  cft_aks_network_rg_name = "cft-${local.aks_env}-network-rg"
+
+  preview_vnet_name            = "cft-preview-vnet"
+  preview_vnet_resource_group  = "cft-preview-network-rg"
+  perftest_vnet_name           = "core-infra-vnet-perftest"
+  perftest_subnet_name         = "core-infra-subnet-mgmtperftest"
+  perftest_vnet_resource_group = "core-infra-perftest"
+
   postgres_pitr_enabled = var.postgres_pitr == null ? false : var.env == var.postgres_pitr.env
   postgres_pitr_cutover = local.postgres_pitr_enabled && var.postgres_use_pitr
 
@@ -20,4 +37,15 @@ locals {
     }
   } : {}
 
+  standard_subnets = [
+    data.azurerm_subnet.jenkins_subnet.id,
+    data.azurerm_subnet.jenkins_aks_00.id,
+    data.azurerm_subnet.jenkins_aks_01.id,
+    data.azurerm_subnet.cft_aks_00_subnet.id,
+    data.azurerm_subnet.cft_aks_01_subnet.id
+  ]
+
+  preview_subnets   = var.env == "aat" ? [data.azurerm_subnet.preview_aks_00_subnet[0].id, data.azurerm_subnet.preview_aks_01_subnet[0].id] : []
+  perftest_subnets  = var.env == "perftest" ? [data.azurerm_subnet.perftest_mgmt_subnet[0].id] : []
+  all_valid_subnets = concat(local.standard_subnets, local.preview_subnets, local.perftest_subnets)
 }
