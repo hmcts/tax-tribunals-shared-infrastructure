@@ -4,7 +4,7 @@ maxmemory_reserved              = "125"
 
 postgres_pitr = {
   env               = "aat"
-  name              = "tax-tribunals-infrastructure-pitr"
+  name              = "tax-tribunals-infrastructure-pitr1"
   restore_time      = "2026-11-28T10:10:00Z"
   sku_name          = "GP_Standard_D2ds_v5"
   import_object_ids = {}
