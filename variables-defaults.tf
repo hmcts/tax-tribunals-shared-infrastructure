@@ -110,11 +110,12 @@ variable "private_dns_subscription_id" {
 }
 
 variable "postgres_pitr" {
-  description = "PostgreSQL restore settings for one target environment; null disables creation."
+  description = "PostgreSQL point-in-time restore settings for one environment, including the restore server SKU. Set to null to disable creation."
   type = object({
     env               = string
     name              = string
     restore_time      = string
+    sku_name          = optional(string, "GP_Standard_D2s_v3")
     import_object_ids = optional(map(string), {})
   })
   default = null

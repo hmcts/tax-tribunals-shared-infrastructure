@@ -32,6 +32,7 @@ module "tt_database_pitr" {
   common_tags          = var.common_tags
 
   location         = var.location
+  pgsql_sku        = var.postgres_pitr.sku_name
   pgsql_storage_mb = var.db_storage_mb
 }
 
