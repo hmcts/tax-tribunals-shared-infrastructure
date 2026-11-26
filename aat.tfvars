@@ -6,6 +6,7 @@ postgres_pitr = {
   env               = "aat"
   name              = "tax-tribunals-infrastructure-pitr"
   restore_time      = "2026-11-28T10:10:00Z"
+  sku_name          = "GP_Standard_D2ds_v5"
   import_object_ids = {}
   #  import_object_ids = {
   #    "DTS Platform Operations PostgreSQL Admin Access" = "3c52c98b-07a3-4a97-92b9-298e86bb1ca9"
